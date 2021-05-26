@@ -17,7 +17,7 @@
 	<div class="container">
 		<div class="forms-container">
 			<div class="signin-signup">
-				<form action="/School_Social_Network/homepage" class="sign-in-form">
+				<form action="/School_Social_Network/login" class="sign-in-form">
 					<h2 class="title">Đăng nhập</h2>
 					<div class="input-field">
 						<i class="fas fa-user"></i> <input type="text"

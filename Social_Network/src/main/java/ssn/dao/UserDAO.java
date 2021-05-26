@@ -17,8 +17,23 @@ public class UserDAO {
 	private JdbcTemplate jtemplate;
 
 	public List<User> getAllUser() {
-		String sql = "SELECT * FROM Users";
+		String sql = "SELECT * FROM users";
 		return jtemplate.query(sql, new UserMapper());
 	}
 
+	public List<Integer> getAllFollowingUserID(int userID) {
+		String sql = "SELECT userID FROM users WHERE userID IN (SELECT userID_2 FROM following WHERE userID_1 = '" + userID
+				+ "')";
+		return jtemplate.queryForList(sql, Integer.class);
+	}
+	
+	public User getUserByUsername(String username) {
+		String sql = "SELECT * FROM users WHERE user_name = '" + username + "' LIMIT 1";
+		return jtemplate.queryForObject(sql, new UserMapper());
+	}
+	
+	public User getUserByUserID(int userID) {
+		String sql = "SELECT * FROM users WHERE userID = '" + userID + "' LIMIT 1";
+		return jtemplate.queryForObject(sql, new UserMapper());
+	}
 }

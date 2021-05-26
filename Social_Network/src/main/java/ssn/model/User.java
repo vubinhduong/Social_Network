@@ -7,6 +7,7 @@ public class User {
 	private String nameShowed;
 	private int following;
 	private int follower;
+	private String avatar;
 	private String email;
 	private String phone;
 	private String address;
@@ -16,14 +17,15 @@ public class User {
 	public User() {
 	}
 
-	public User(int userId, String username, String password, String nameShowed, int following, int follower, String email, String phone,
-			String address, int gender, int isActivated) {
+	public User(int userId, String username, String password, String nameShowed, int following, int follower,
+			String avatar, String email, String phone, String address, int gender, int isActivated) {
 		this.userId = userId;
 		this.username = username;
 		this.password = password;
 		this.nameShowed = nameShowed;
 		this.following = following;
 		this.follower = follower;
+		this.avatar = avatar;
 		this.email = email;
 		this.phone = phone;
 		this.address = address;
@@ -77,6 +79,14 @@ public class User {
 
 	public void setFollower(int follower) {
 		this.follower = follower;
+	}
+
+	public String getAvatar() {
+		return avatar;
+	}
+
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
 	}
 
 	public String getEmail() {

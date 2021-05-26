@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import ssn.model.User;
 import ssn.service.UserService;
 
 @Controller
@@ -21,16 +22,15 @@ public class LoginController {
 		return "loginPage";
 	}
 
-	@RequestMapping(value = "/homepage")
-	public ModelAndView login(@RequestParam("username") String username,
+	@RequestMapping(value = "/login")
+	public String login(@RequestParam("username") String username,
 			@RequestParam("password") String password, HttpSession session) {
 		if (userService.checkLoginUser(username, password)) {
-			session.setAttribute("username", username);
-			ModelAndView mav = new ModelAndView("/homepage");
-			return mav;
+			User user = userService.getUserByUsername(username);
+			session.setAttribute("currentUser", user);
+			return "redirect:homepage";
 		} else {
-			ModelAndView mav = new ModelAndView("/loginPage");
-			return mav;
+			return "redirect:login";
 		}
 	}
 
