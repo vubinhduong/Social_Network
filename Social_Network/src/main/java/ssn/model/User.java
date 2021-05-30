@@ -1,5 +1,10 @@
 package ssn.model;
 
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+@Repository
+@Transactional
 public class User {
 	private int userId;
 	private String username;

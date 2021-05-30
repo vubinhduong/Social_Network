@@ -68,7 +68,6 @@
 					<div class="newfeed">
 					
 					<!--  POSTS  -->
-						<c:forEach items="${listPostNF}" var="postNF">
 							<div class="post">
 								<div class="post-header">
 									<div class="avatar-icon">
@@ -159,7 +158,6 @@
 									</div>
 								</div>
 							</div>
-						</c:forEach>
 						
 					<!--  END POSTS  -->
 						

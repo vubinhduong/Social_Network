@@ -1,9 +1,14 @@
 package ssn.model;
 
+import java.util.Date;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
+import ssn.method.DatetimeMethod;
 
 @Repository
 @Transactional
@@ -18,9 +23,19 @@ public class Post {
 	private List<Comment> comments;
 	private User userPosted;
 	private String latestLikeUser;
+	private boolean likeYet;
 
 	public Post() {
 		super();
+	}
+
+	public Post(HttpSession session, String content, String image) {
+		super();
+		User user = (User) session.getAttribute("currentUser");
+		this.userID_posted = user.getUserId();
+		this.content = content;
+		this.image = image;
+		this.timed = DatetimeMethod.formatDate(new Date(), "yyyy-MM-dd HH:mm:ss");
 	}
 
 	public Post(int postID, int userID_posted, String content, String image, String timed, int liked) {
@@ -111,6 +126,17 @@ public class Post {
 
 	public void setLatestLikeUser(String latestLikeUser) {
 		this.latestLikeUser = latestLikeUser;
+	}
+
+	public boolean isLikeYet() {
+		return likeYet;
+	}
+
+	public void setLikeYet(int likeYet) {
+		if (likeYet == 1)
+			this.likeYet = true;
+		else
+			this.likeYet = false;
 	}
 
 }

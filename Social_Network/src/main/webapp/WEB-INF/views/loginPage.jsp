@@ -10,7 +10,8 @@
 <script src="https://kit.fontawesome.com/64d58efce2.js"
 	crossorigin="anonymous"></script>
 <link rel="stylesheet" href="<c:url value="/resources/css/login.css"/>" />
-<title>Đăng nhập</title>
+<link rel = "icon" href = "<c:url value="/resources/images/icon-logo.ico"/>" type = "image/x-icon">
+<title> &nbsp; Login | SSN</title>
 </head>
 
 <body>

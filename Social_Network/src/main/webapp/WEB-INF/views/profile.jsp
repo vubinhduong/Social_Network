@@ -4,12 +4,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title> &nbsp; Homepage | SSN</title>
+	<title> &nbsp; Profile | SSN</title>
 	<link rel = "icon" href = "<c:url value="/resources/images/icon-logo.ico"/>" type = "image/x-icon">
 	<link rel="stylesheet" href="<c:url value="/resources/css/homepage.css"/>" />
 	<script src="https://kit.fontawesome.com/64d58efce2.js"
 	crossorigin="anonymous"></script>
-	<link rel="icon" href="https://www.flaticon.com/free-icon/instagram-logo_4406252?term=logo&page=3&position=5&page=3&position=5&related_id=4406252&origin=search">
 	<link class="jsbin" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
 	<script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 	<script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
@@ -17,9 +16,7 @@
 </head>
 <body>
 	<div class="wrapper">
-	<input type="hidden" id="currentUserID" value="${currentUser.userId}">
-	<input type="hidden" id="currentUserNameShowed" value="${currentUser.nameShowed}">
-	<input type="hidden" id="currentUserAvatar" value="${currentUser.avatar}">
+	
 	<!-- UPLOAD POST -->
 
 		<div id="post-form" class="post-form">
@@ -62,14 +59,42 @@
 	<!--  MAIN HEADER -->
 			<jsp:include page="header.jsp"></jsp:include>
 
-			<div class="content">
-				<h1 style="font-size: 1.5rem; color: #000; margin-top: 0px;">Newfeed</h1>
-				<div class="content-main" style="display: flex; min-height: 100vh;">
-					<div class="newfeed">
-					
-					<!--  POSTS  -->
-						<c:forEach items="${listPostNF}" var="postNF">
-							<div class="post">
+			<div class="content" style="max-width: 1000px;">
+				<h1 style="font-size: 1.5rem; color: #000; margin-top: 0px; margin-left: 100px;">People</h1>
+				<div class="content-main" style="display: flex; width: 850px;">
+					<div class="profile-avatar">
+						<div class="profile-avatar-2" style="width: 95.7%; height: 95.7%; background-color: #fff; border-radius: 100%; padding: 3px; margin-top: 2px; margin-left: 2px;">
+							<img class="avatar-profile" src='<c:url value="${user.avatar}"/>' alt="">
+						</div>
+					</div>
+					<div style="margin: 20px 0px;">
+						<h1 style="color: #000; margin-left: -5px;">${user.nameShowed}</h1>
+						<h3 style="margin: -10px 5px 7px 0px;">${user.address}</h3>
+						<p>Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum</p>
+						<c:if test="${state == 0}">
+							<button class="upload_btn" onclick="window.location.href='/School_Social_Network/follow?userId=${user.userId}'" style="margin: 10px 0px; width: 150px;">Follow</button>
+						</c:if>
+						<c:if test="${state == 1}">  
+							<button class="unfollow-btn" onclick="window.location.href='/School_Social_Network/homepage'" style="margin: 10px 0px 20px 0px; width: 150px;">Unfollow</button>
+						</c:if>
+						<div class="profile-below" style="margin-top: 10px;">
+							<div class="fff" style="width: 90px;">
+								<p><strong>${numPost} Posts</strong></p>
+							</div>
+							<div class="fff">
+								<p><strong>${user.follower} Followers</strong></p>
+							</div>
+							<div class="fff">
+								<p><strong>${user.following} Following</strong></p>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="content-main">
+					<div class="newfeed" style="width: 70%; margin: 50px 70px;">
+					<c:forEach items="${listPost}" var="postNF">
+						<div class="post" style="margin-bottom: 50px;">
 								<div class="post-header">
 									<div class="avatar-icon">
 										<div class="avatar-icon-1">
@@ -77,7 +102,7 @@
 										</div>
 									</div>
 									<div style="float: left; padding: 0px 0px 0px 15px;">
-										<a href="/School_Social_Network/profile?userId=${postNF.userPosted.userId}">${postNF.userPosted.nameShowed}</a>
+										<a href="#">${postNF.userPosted.nameShowed}</a>
 									</div>		
 									<div style="float: right; margin-top: 5px; font-size: 20px;">
 	                                	<i class="fas fa-ellipsis-h"></i>
@@ -153,24 +178,15 @@
 									<div class="comment-bar">
 										<input class="comment-input" id="cmt${postNF.postID}content" type="text" placeholder="Add your comment.." name="">
 										<input type="hidden" id="postcmt${postNF.postID}" value="${postNF.postID}">
-										<div class="send-icon" id="cmt${postNF.postID}">
+										<div class="send-icon" id="cmt${postNF.postID}" style="left: 629px;">
 											<i class="far fa-paper-plane"></i>
 										</div>
 									</div>
 								</div>
-							</div>
-						</c:forEach>
-						
-					<!--  END POSTS  -->
-						
 					</div>
-
-					<!-- RIGHT BAR -->
-					
-					<jsp:include page="rightbar.jsp"></jsp:include>
-
-					
-				</div>
+					</c:forEach>
+				</div>		
+				
 			</div>
 		</div>
 	</div>

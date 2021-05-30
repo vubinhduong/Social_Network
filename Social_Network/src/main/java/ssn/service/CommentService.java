@@ -29,4 +29,8 @@ public class CommentService {
 		return listComment;
 	}
 	
+	public void comment(int postID, int userID, String content) {
+		commentDAO.comment(postID, userID, content);
+	}
+	
 }
